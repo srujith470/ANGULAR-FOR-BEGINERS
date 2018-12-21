@@ -9,15 +9,19 @@ import {Course} from '../model/course';
 })
 export class CourseCardComponent implements OnInit {
 
+@Input() cardIndex: number;
 
   constructor() { }
-  @Input() course: Course;
+@Input() course: Course;
 
-  @Output() courseSelected = new EventEmitter<Course>();
+@Output() courseSelected = new EventEmitter<Course>();
 
   ngOnInit() {
   }
 
+  isImageVisible(){
+    return this.course && this.course.iconUrl;
+  }
 
   onCourseViewed(){
     console.log('button click from course-card component');
