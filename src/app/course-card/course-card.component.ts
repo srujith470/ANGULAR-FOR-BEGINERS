@@ -29,4 +29,21 @@ export class CourseCardComponent implements OnInit {
     this.courseSelected.emit(this.course)
   }
 
+  cardClasses(){
+    if(this.course.category == 'BEGINNER'){
+      return ['beginner']
+      //return 'beginner'
+    }
+  
+    // return {'beginner': this.course.category == 'BEGINNER'}
+  }
+
+  cardStyles(){
+    return{
+      'text-decoration':'underline',
+      'font-style': 'italic',
+      //'background-image': 'url('+ this.course.iconUrl +')'
+    }
+  }
+
 }
