@@ -11,7 +11,7 @@ export class AppComponent {
 
   courses = COURSES;
 
-
+  startDate = new Date()
   onCourseSelected(course:Course){
     console.log('app component clicked', course)
   }

@@ -1,25 +1,20 @@
 <div class="top-menu">
 
-<img class="logo" style="float: left;"
-src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
-<h1 style="text-align:center">ANGULAR UNIVERSITY</h1>
+    <img class="logo" style="float: left;" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+    <h1 style="text-align:center">ANGULAR UNIVERSITY</h1>
 
 </div>
-
+<div class="demo">
+    <div>
+    START DATE: {{startDate | date: 'MM/dd/yyyy : hh:mm:ss'}}
+    </div>
+</div>
 
 <div class="courses">
-<course-card 
-*ngFor = "let floopcourse of courses; index as i; first as isFirst; 
+    <course-card *ngFor="let floopcourse of courses; index as i; first as isFirst; 
 last as islast; even as isEven; odd as isOdd"
-
-[class.is-first]="isFirst" [class.is-last]="isLast"
-[class.is-even]="isEven" [class.is-odd]="isOdd"
-
-
-(courseSelected) = "onCourseSelected($event)"
- [course]="floopcourse"  [cardIndex] = "i + 1" >
-</course-card>
+        [class.is-first]="isFirst" [class.is-last]="isLast" [class.is-even]="isEven" [class.is-odd]="isOdd"
+        (courseSelected)="onCourseSelected($event)" [course]="floopcourse" [cardIndex]="i + 1">
+    </course-card>
 
 </div>
-
-
