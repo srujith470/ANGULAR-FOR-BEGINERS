@@ -1,8 +1,7 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import {COURSES} from '../db-data';
 import { Course } from './model/course';
 import { CourseCardComponent } from './course-card/course-card.component';
-import { Element } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -10,30 +9,32 @@ import { Element } from '@angular/compiler';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  @ViewChildren(CourseCardComponent,{read:ElementRef})
+  cards:QueryList<CourseCardComponent>;
+  
   courses = COURSES;
-  startDate = new Date()
-
-  @ViewChild('cardRef1',{read:ElementRef})
-  card1: ElementRef
-
-  @ViewChild('courseImage')
-  courseImage: ElementRef
-
-  @ViewChild('container')
-  containerDiv: ElementRef
 
   constructor(){
-    console.log('app component form constructor', this.card1)
   }
+  onCoursesEdited(){
+    this.courses.push(
+      {
+        id: 1,
+        description: "Angular Core Deep Dive",
+        iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-core-in-depth-small.png',
+        longDescription: "A detailed walk-through of the most important part of Angular - the Core and Common modules",
+        category: 'INTERMEDIATE',
+        lessonsCount: 10
 
+      }
+    )
+  }
   ngAfterViewInit(){
-    console.log('app component from lifecycle', this.card1)
+      console.log(this.cards)
   }
 
   onCourseSelected(course:Course){
-     console.log('app component clicked for image', this.courseImage)
 
-   }
+     }
 
 }

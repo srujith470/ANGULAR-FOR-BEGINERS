@@ -3,12 +3,18 @@
     <img class="logo" style="float: left;" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
     <h1 style="text-align:center">ANGULAR UNIVERSITY</h1>
 
-</div>
+</div>  
 
+<button (click) = "onCoursesEdited()">Edit Course</button>
 <div class="courses" #container>
-    <course-card #cardRef1   
+    <course-card *ngFor = "let floopcourse of courses; index as i; first as isFirst; 
+    last as islast; even as isEven; odd as isOdd"
+    
+    [class.is-first]="isFirst" [class.is-last]="isLast"
+    [class.is-even]="isEven" [class.is-odd]="isOdd"
+    [cardIndex] = "i + 1"       
         (courseSelected)="onCourseSelected($event)" 
-        [course]="courses[0]">
+        [course]="floopcourse">
     </course-card>
 
 </div>
