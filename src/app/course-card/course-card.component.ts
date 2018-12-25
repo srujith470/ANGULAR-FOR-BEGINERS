@@ -1,13 +1,14 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild, ContentChild, ElementRef, ContentChildren, AfterViewInit, AfterContentInit, QueryList } from '@angular/core';
 import{COURSES} from '../../db-data'
 import {Course} from '../model/course';
+import { CourseImageComponent } from '../course-image/course-image.component';
 
 @Component({
   selector: 'course-card',
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.css']
 })
-export class CourseCardComponent implements OnInit {
+export class CourseCardComponent implements OnInit,AfterViewInit,AfterContentInit {
 
 @Input() cardIndex: number;
 
@@ -16,14 +17,21 @@ export class CourseCardComponent implements OnInit {
 
 @Output() courseSelected = new EventEmitter<Course>();
 
-  ngOnInit() {
-  }
+@ContentChildren(CourseImageComponent, {read:ElementRef})
+images:QueryList<CourseCardComponent>;  
 
-  isImageVisible(){
+ngOnInit() {}
+ngAfterViewInit(){
+}
+ngAfterContentInit(){
+  console.log(this.images)
+
+}
+isImageVisible(){
     return this.course && this.course.iconUrl;
   }
 
-  onCourseViewed(){
+onCourseViewed(){
     console.log('button click from course-card component');
 
     this.courseSelected.emit(this.course)

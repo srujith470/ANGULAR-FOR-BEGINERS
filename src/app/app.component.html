@@ -5,9 +5,8 @@
 
 </div>  
 
-<button (click) = "onCoursesEdited()">Edit Course</button>
-<div class="courses" #container>
-    <course-card *ngFor = "let floopcourse of courses; index as i; first as isFirst; 
+<div class="courses" #container *ngIf = "courses[0] as course">
+    <!-- <course-card *ngFor = "let floopcourse of courses; index as i; first as isFirst; 
     last as islast; even as isEven; odd as isOdd"
     
     [class.is-first]="isFirst" [class.is-last]="isLast"
@@ -15,6 +14,20 @@
     [cardIndex] = "i + 1"       
         (courseSelected)="onCourseSelected($event)" 
         [course]="floopcourse">
+    </course-card> -->
+    
+    <course-card 
+    (courseSelected)="onCourseSelected($event)"
+    [course]="course"> 
+    <course-image [srcUrl] = "course.iconUrl"></course-image>
+    <course-image [srcUrl] = "courses[1].iconUrl"></course-image>
+    <course-image [srcUrl] = "courses[2].iconUrl"></course-image>
+
+    <div class="course-description">
+        {{course.longDescription}}
+    </div>
+    
     </course-card>
+
 
 </div>
