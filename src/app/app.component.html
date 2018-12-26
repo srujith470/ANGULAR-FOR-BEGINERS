@@ -6,7 +6,15 @@
 </div>  
 
 <div class="courses" #container *ngIf = "courses[0] as course">
-    <!-- <course-card *ngFor = "let floopcourse of courses; index as i; first as isFirst; 
+   
+        <ng-template #noImage let-courseName="description">
+            <p class="warn">{{courseName}} has no image</p>
+            <img src="../../assets/empty-image.png">
+        </ng-template>
+            
+
+
+        <!-- <course-card *ngFor = "let floopcourse of courses; index as i; first as isFirst; 
     last as islast; even as isEven; odd as isOdd"
     
     [class.is-first]="isFirst" [class.is-last]="isLast"
@@ -18,10 +26,8 @@
     
     <course-card 
     (courseSelected)="onCourseSelected($event)"
-    [course]="course"> 
+    [course]="course" [noImageTpl]="noImage"> 
     <course-image [srcUrl] = "course.iconUrl"></course-image>
-    <course-image [srcUrl] = "courses[1].iconUrl"></course-image>
-    <course-image [srcUrl] = "courses[2].iconUrl"></course-image>
 
     <div class="course-description">
         {{course.longDescription}}

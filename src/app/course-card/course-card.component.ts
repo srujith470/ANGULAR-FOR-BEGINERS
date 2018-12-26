@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, ViewChild, ContentChild, ElementRef, ContentChildren, AfterViewInit, AfterContentInit, QueryList } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild, ContentChild, ElementRef, ContentChildren, AfterViewInit, AfterContentInit, QueryList, TemplateRef } from '@angular/core';
 import{COURSES} from '../../db-data'
 import {Course} from '../model/course';
 import { CourseImageComponent } from '../course-image/course-image.component';
@@ -9,6 +9,8 @@ import { CourseImageComponent } from '../course-image/course-image.component';
   styleUrls: ['./course-card.component.css']
 })
 export class CourseCardComponent implements OnInit,AfterViewInit,AfterContentInit {
+@Input() 
+noImageTpl:TemplateRef<any>;
 
 @Input() cardIndex: number;
 
